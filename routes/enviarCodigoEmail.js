@@ -13,8 +13,8 @@ router.post('/send-code', async (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.EMAIL_USER,  // Verifique se as variáveis estão corretamente configuradas no .env
-            pass: process.env.EMAIL_PASS,  // Se estiver usando uma senha de app do Gmail, insira-a aqui
+            user: process.env.EMAIL_USER,  // Certifique-se de que essas variáveis de ambiente estão no .env
+            pass: process.env.EMAIL_PASS,
         },
     });
 
@@ -26,9 +26,7 @@ router.post('/send-code', async (req, res) => {
             text: `Seu código é: ${code}`,
         });
 
-        // Log do envio do e-mail (para depuração)
         console.log('Email enviado: ' + info.response);
-
         res.json({ ok: true, preview: nodemailer.getTestMessageUrl(info) });
     } catch (error) {
         console.error('Erro ao enviar o e-mail:', error);
@@ -39,7 +37,6 @@ router.post('/send-code', async (req, res) => {
 router.post('/verify-code', (req, res) => {
     const { email, code } = req.body;
 
-    // Verifica se o código está presente e é válido
     if (codes[email] && codes[email] === code) {
         delete codes[email];  // Limpa o código após verificação bem-sucedida
         return res.json({ success: true });
