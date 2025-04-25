@@ -3,8 +3,9 @@ const express = require('express');
 const cors = require('cors');
 
 const enviarCodigoEmailRoutes = require('./routes/enviarCodigoEmail');
-const cadastrarRoutes = require('./routes/cadastrar');
+const cadastrarLoginRoutes = require('./routes/cadastrarLogin');
 const loginRoutes = require('./routes/login');
+const cadastrarClienteRoutes = require('./routes/cadastrarCliente');
 
 const app = express();
 
@@ -14,12 +15,15 @@ app.use(express.json());
 // Aqui! Middleware para logar todas as requisições:
 app.use((req, res, next) => {
     console.log(`[${req.method}] ${req.url}`);
+    console.log('Body:', req.body);
     next();
 });
 
 app.use('/enviarCodigoEmail', enviarCodigoEmailRoutes);
-app.use('/cadastrar', cadastrarRoutes);
+app.use('/cadastrarLogin', cadastrarLoginRoutes);
 app.use('/login', loginRoutes);
+app.use('/cadastrarCliente', cadastrarClienteRoutes);
+
 
 app.listen(3001, () => {
     console.log('Servidor rodando na porta 3001');
