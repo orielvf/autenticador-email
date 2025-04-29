@@ -6,6 +6,8 @@ const enviarCodigoEmailRoutes = require('./routes/enviarCodigoEmail');
 const cadastrarLoginRoutes = require('./routes/cadastrarLogin');
 const loginRoutes = require('./routes/login');
 const cadastrarClienteRoutes = require('./routes/cadastrarCliente');
+const lerClientesRoutes = require('./routes/lerCliente');
+const editarClienteRoutes = require('./routes/editarCliente');
 
 const app = express();
 
@@ -23,6 +25,8 @@ app.use('/enviarCodigoEmail', enviarCodigoEmailRoutes);
 app.use('/cadastrarLogin', cadastrarLoginRoutes);
 app.use('/login', loginRoutes);
 app.use('/cadastrarCliente', cadastrarClienteRoutes);
+app.use('/lerClientes', lerClientesRoutes);
+app.use('/editarCliente', editarClienteRoutes);
 
 
 app.listen(3001, () => {
