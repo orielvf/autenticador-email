@@ -8,6 +8,7 @@ const loginRoutes = require('./routes/login');
 const cadastrarClienteRoutes = require('./routes/cadastrarCliente');
 const lerClientesRoutes = require('./routes/lerCliente');
 const editarClienteRoutes = require('./routes/editarCliente');
+const deletarClienteRoutes = require('./routes/deletarCliente');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/login', loginRoutes);
 app.use('/cadastrarCliente', cadastrarClienteRoutes);
 app.use('/lerClientes', lerClientesRoutes);
 app.use('/editarCliente', editarClienteRoutes);
+app.use('/deletarCliente', deletarClienteRoutes);
 
 
 app.listen(3001, () => {

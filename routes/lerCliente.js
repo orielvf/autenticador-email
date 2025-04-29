@@ -15,7 +15,7 @@ router.get('/:usuario_id', async (req, res) => {
     try {
         console.log('Buscando clientes no banco de dados...');
         const result = await pool.query(
-            'SELECT * FROM clientes WHERE usuario_id = $1',
+            'SELECT * FROM clientes WHERE usuario_id = $1 AND ativo = TRUE',
             [usuario_id]
         );
 
