@@ -9,6 +9,7 @@ const cadastrarClienteRoutes = require('../routes/cadastrarCliente');
 const lerClientesRoutes = require('../routes/lerCliente');
 const editarClienteRoutes = require('../routes/editarCliente');
 const deletarClienteRoutes = require('../routes/deletarCliente');
+const cadastrarCampanhaRoutes = require('../routes/cadastrarCampanha');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use('/cadastrarCliente', cadastrarClienteRoutes);
 app.use('/lerClientes', lerClientesRoutes);
 app.use('/editarCliente', editarClienteRoutes);
 app.use('/deletarCliente', deletarClienteRoutes);
+app.use('/cadastrarCampanha', cadastrarCampanhaRoutes);
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
