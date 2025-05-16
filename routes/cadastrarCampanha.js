@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 router.post("/", async (req, res) => {
     try {
-        const { nome, descricao, data_inicio, data_termino, quantidadeAleatoria } = req.body;
+        const { nome, descricao, data_inicio, data_termino, quantidadeAleatoria, usuario_id } = req.body;
 
         const novaCampanha = await prisma.campanha.create({
             data: {
@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
                 data_inicio: new Date(data_inicio),
                 data_termino: new Date(data_termino),
                 quantidadeAleatoria,
-                usuari_id,
+                usuario_id,
             },
         });
 
