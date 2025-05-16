@@ -1,28 +1,44 @@
-const express = require("express");
+// routes/cadastrarCampanha.js
+const express = require('express');
+const pool = require('../db'); // conexão com o banco (PostgreSQL)
 const router = express.Router();
-const { PrismaClient } = require("@prisma/client");
 
-const prisma = new PrismaClient();
+router.post('/', async (req, res) => {
+    const { nome, descricao, data_inicio, data_termino, quantidadeAleatoria, usuario_id } = req.body;
 
-router.post("/", async (req, res) => {
+    console.log('Requisição recebida:', req.body);
+
+    if (!usuario_id || !nome || !data_inicio || !data_termino) {
+        console.log('Erro: Dados obrigatórios ausentes');
+        return res.status(400).json({ sucesso: false, mensagem: 'Dados obrigatórios ausentes.' });
+    }
+
     try {
-        const { nome, descricao, data_inicio, data_termino, quantidadeAleatoria, usuario_id } = req.body;
+        console.log('Iniciando inserção da campanha no banco de dados...');
 
-        const novaCampanha = await prisma.campanha.create({
-            data: {
-                nome,
-                descricao,
-                data_inicio: new Date(data_inicio),
-                data_termino: new Date(data_termino),
-                quantidadeAleatoria,
-                usuario_id,
-            },
-        });
+        const query = `
+            INSERT INTO campanhas (nome, descricao, data_inicio, data_termino, quantidadeAleatoria, usuario_id)
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING *;
+        `;
 
-        res.status(201).json(novaCampanha);
-    } catch (error) {
-        console.error("Erro ao cadastrar campanha:", error);
-        res.status(500).json({ error: "Erro ao cadastrar campanha" });
+        const values = [
+            nome,
+            descricao,
+            data_inicio,     // idealmente já em formato ISO string
+            data_termino,
+            quantidadeAleatoria,
+            usuario_id
+        ];
+
+        const result = await pool.query(query, values);
+
+        console.log('Campanha cadastrada com sucesso:', result.rows[0]);
+
+        res.status(201).json({ sucesso: true, campanha: result.rows[0] });
+    } catch (erro) {
+        console.error('Erro ao cadastrar campanha:', erro);
+        res.status(500).json({ sucesso: false, mensagem: 'Erro ao cadastrar campanha.' });
     }
 });
 
