@@ -12,6 +12,8 @@ const editarClienteRoutes = require('../routes/editarCliente');
 const deletarClienteRoutes = require('../routes/deletarCliente');
 const deletarCampanhaRoutes = require('../routes/deletarCampanha');
 const cadastrarCampanhaRoutes = require('../routes/cadastrarCampanha');
+const atualizarCampanhaRoutes = require('../routes/atualizarCampanha');
+
 
 const app = express();
 
@@ -35,6 +37,8 @@ app.use('/editarCliente', editarClienteRoutes);
 app.use('/deletarCliente', deletarClienteRoutes);
 app.use('/deletarCampanha', deletarCampanhaRoutes);
 app.use('/cadastrarCampanha', cadastrarCampanhaRoutes);
+app.use('/atualizarCampanha', atualizarCampanhaRoutes);
+
 
 
 
