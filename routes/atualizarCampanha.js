@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../db');
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.put('/', async (req, res) => {
     const { id, usuario_id, nome, descricao, data_inicio, data_termino, quantidadeAleatoria } = req.body;
 
     console.log('--- Requisição recebida para atualizar campanha ---');
