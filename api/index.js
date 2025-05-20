@@ -13,7 +13,7 @@ const deletarClienteRoutes = require('../routes/deletarCliente');
 const deletarCampanhaRoutes = require('../routes/deletarCampanha');
 const cadastrarCampanhaRoutes = require('../routes/cadastrarCampanha');
 const atualizarCampanhaRoutes = require('../routes/atualizarCampanha');
-
+const promotorRoutes = require('../routes/promotor');
 
 const app = express();
 
@@ -38,6 +38,7 @@ app.use('/deletarCliente', deletarClienteRoutes);
 app.use('/deletarCampanha', deletarCampanhaRoutes);
 app.use('/cadastrarCampanha', cadastrarCampanhaRoutes);
 app.use('/atualizarCampanha', atualizarCampanhaRoutes);
+app.use('/promotor', promotorRoutes);
 
 
 
