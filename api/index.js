@@ -15,6 +15,7 @@ const cadastrarCampanhaRoutes = require('../routes/cadastrarCampanha');
 const atualizarCampanhaRoutes = require('../routes/atualizarCampanha');
 const promotorRoutes = require('../routes/promotor');
 const rodarNPSRoutes = require('../routes/rodarNPS');
+const atualizarNpsRoutes = require('../routes/atualizarNps');
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use('/cadastrarCampanha', cadastrarCampanhaRoutes);
 app.use('/atualizarCampanha', atualizarCampanhaRoutes);
 app.use('/promotor', promotorRoutes);
 app.use('/rodarNPS', rodarNPSRoutes);
+app.use('/atualizarNps', atualizarNpsRoutes);
 
 
 
