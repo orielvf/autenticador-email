@@ -2,7 +2,8 @@ const express = require('express');
 const pool = require('../db');
 const router = express.Router();
 
-router.post('/atualizarNps', async (req, res) => {
+router.post('/', async (req, res) => {
+
     const { id, npswebhook } = req.body;
 
     if (!id || !npswebhook) {
