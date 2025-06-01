@@ -3,7 +3,7 @@ const pool = require('../db');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const { id, usuario_id, nome, email, telefone, descricao, status } = req.body;
+    const { id, usuario_id, nome, email, telefone, descricao } = req.body;
 
     console.log('--- Requisição recebida para editar cliente ---');
     console.log('Dados recebidos:', {
@@ -12,8 +12,7 @@ router.post('/', async (req, res) => {
         nome,
         email,
         telefone,
-        descricao,
-        status,
+        descricao
     });
 
     if (!id || !usuario_id) {
@@ -38,13 +37,12 @@ router.post('/', async (req, res) => {
 
         const resultadoAtualizacao = await pool.query(
             `UPDATE clientes
-       SET nome = $1,
-           email = $2,
-           telefone = $3,
-           descricao = $4,
-           status = $5
-       WHERE id = $6 AND usuario_id = $7`,
-            [nome, email, telefone, descricao, status, id, usuario_id]
+            SET nome = $1,
+                email = $2,
+                telefone = $3,
+                descricao = $4
+            WHERE id = $5 AND usuario_id = $6`,
+            [nome, email, telefone, descricao, id, usuario_id]
         );
 
         console.log(`[SUCESSO] Cliente atualizado com sucesso:`, {
@@ -53,8 +51,7 @@ router.post('/', async (req, res) => {
             nome,
             email,
             telefone,
-            descricao,
-            status
+            descricao
         });
 
         res.status(200).json({ sucesso: true, mensagem: 'Cliente atualizado com sucesso.' });
