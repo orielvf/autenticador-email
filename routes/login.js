@@ -1,7 +1,10 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const pool = require('../db');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
+
+const JWT_SECRET = process.env.JWT_SECRET || 'seuSegredoAqui';
 
 router.post('/', async (req, res) => {
     console.log('Requisição de login recebida:', req.body);
@@ -28,18 +31,23 @@ router.post('/', async (req, res) => {
             });
         }
 
+        // Cria o token JWT
+        const payload = {
+            id: user.id,
+            email: user.email,
+        };
+
+        const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
+
         return res.json({
             sucesso: true,
             mensagem: 'Login bem-sucedido',
+            token, // envia o token para o cliente
             user: {
                 email: user.email,
                 id: user.id,
-                npswebhook: user.npswebhook,
-                indicadorwebhook: user.indicadorwebhook,
-                promotorwebhook: user.promotorwebhook,
             },
         });
-
     } catch (err) {
         console.error(err);
         return res.status(500).json({
