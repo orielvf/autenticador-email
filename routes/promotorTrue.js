@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
 
     try {
         await pool.query(
-            `UPDATE clientes SET promotor = true, pendente = false WHERE id = $1`,
+            `UPDATE clientes SET promotor = true, pendente = false, apoiador = false WHERE id = $1`,
             [id]
         );
 
