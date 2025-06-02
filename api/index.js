@@ -15,10 +15,12 @@ const cadastrarCampanhaRoutes = require('../routes/cadastrarCampanha');
 const atualizarCampanhaRoutes = require('../routes/atualizarCampanha');
 const rodarPromotorRoutes = require('../routes/rodarPromotor');
 const rodarNPSRoutes = require('../routes/rodarNPS');
-const atualizarNpsRoutes = require('../routes/atualizarNps');
+const atualizarHooksRoutes = require('../routes/atualizarHooks');
 const apoiadorTrueRoutes = require('../routes/apoiadorTrue');
 const promotorTrueRoutes = require('../routes/promotorTrue');
 const retratorTrueRoutes = require('../routes/retratorTrue');
+const lerWebhooksRoutes = require('../routes/lerWebhooks');
+
 
 const app = express();
 
@@ -45,11 +47,11 @@ app.use('/cadastrarCampanha', cadastrarCampanhaRoutes);
 app.use('/atualizarCampanha', atualizarCampanhaRoutes);
 app.use('/rodarPromotor', rodarPromotorRoutes);
 app.use('/rodarNPS', rodarNPSRoutes);
-app.use('/atualizarNps', atualizarNpsRoutes);
+app.use('/atualizarHooks', atualizarHooksRoutes);
 app.use('/apoiadorTrue', apoiadorTrueRoutes);
 app.use('/promotorTrue', promotorTrueRoutes);
 app.use('/retratorTrue', retratorTrueRoutes);
-
+app.use('/lerWebhooks', lerWebhooksRoutes);
 
 
 
