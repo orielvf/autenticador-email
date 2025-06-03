@@ -20,6 +20,7 @@ const apoiadorTrueRoutes = require('../routes/apoiadorTrue');
 const promotorTrueRoutes = require('../routes/promotorTrue');
 const retratorTrueRoutes = require('../routes/retratorTrue');
 const lerWebhooksRoutes = require('../routes/lerWebhooks');
+const testeRoutes = require('../routes/teste');
 
 
 const app = express();
@@ -52,6 +53,7 @@ app.use('/apoiadorTrue', apoiadorTrueRoutes);
 app.use('/promotorTrue', promotorTrueRoutes);
 app.use('/retratorTrue', retratorTrueRoutes);
 app.use('/lerWebhooks', lerWebhooksRoutes);
+app.use('/teste', testeRoutes);
 
 
 
