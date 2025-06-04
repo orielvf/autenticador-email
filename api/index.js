@@ -21,6 +21,7 @@ const promotorTrueRoutes = require('../routes/promotorTrue');
 const retratorTrueRoutes = require('../routes/retratorTrue');
 const lerWebhooksRoutes = require('../routes/lerWebhooks');
 const populaCampanhaNPSRoutes = require('../routes/populaCampanhaNPS');
+const rodarCampanhaNPSRoutes = require('../routes/rodarCampanhaNPS');
 const testeRoutes = require('../routes/teste');
 
 
@@ -55,6 +56,7 @@ app.use('/promotorTrue', promotorTrueRoutes);
 app.use('/retratorTrue', retratorTrueRoutes);
 app.use('/lerWebhooks', lerWebhooksRoutes);
 app.use('/populaCampanhaNPS', populaCampanhaNPSRoutes);
+app.use('/rodarCampanhaNPS', rodarCampanhaNPSRoutes);
 app.use('/teste', testeRoutes);
 
 
