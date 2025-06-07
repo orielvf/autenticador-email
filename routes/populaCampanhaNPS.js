@@ -41,10 +41,10 @@ router.post('/', async (req, res) => {
             `SELECT * FROM clientes 
              WHERE usuario_id = $1 
              AND ativo = true 
-             AND pendente = false 
-             AND apoiador = false 
-             AND promotor = false 
-             AND retrator = false
+             AND (pendente IS NOT TRUE) 
+             AND (apoiador IS NOT TRUE) 
+             AND (promotor IS NOT TRUE)
+             AND (retrator IS NOT TRUE)
              AND NOT (id = ANY($2::int[]))`,
             [campanha.usuario_id, clientesRegistrados.map(id => parseInt(id))]
         );
