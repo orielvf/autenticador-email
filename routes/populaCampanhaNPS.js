@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
 
         console.log(`[POPULA CAMPANHA] Buscando clientes disponíveis no banco...`);
         const { rows: clientesDisponiveis } = await pool.query(
-            `SELECT id FROM clientes 
+            `SELECT * FROM clientes 
              WHERE usuario_id = $1 
              AND ativo = true 
              AND pendente = false 
